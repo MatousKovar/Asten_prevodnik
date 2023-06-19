@@ -1,0 +1,3 @@
+/Users/matouskovar/Development/Asten - prevodnik/cmake-build-debug/CMakeFiles/Asten___prevodnik.dir
+/Users/matouskovar/Development/Asten - prevodnik/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/matouskovar/Development/Asten - prevodnik/cmake-build-debug/CMakeFiles/rebuild_cache.dir
