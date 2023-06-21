@@ -168,21 +168,23 @@ public:
 int main(int argc, char *argv[]) {
     //vstupni parametry mohou byt 2 nebo 3 ( oddelovac je implicitne ','
     if (argc != 3 && argc != 4) {
-        cout << "Chybí parametr, formát[vstupní soubor, výtupní soubor, oddělovač]" << endl;
+        cout << "Chybi parametr, format[vstupni soubor, vytupni soubor, oddelovac]" << endl;
         return EXIT_FAILURE;
     }
     char delimiter = ',';
     if (argc == 4)
         delimiter = *argv[3];
+    cout << delimiter << endl;
     CApplication app(argv[1], argv[2], delimiter);
 
     try {
         app.Run();
     }
     catch (const invalid_argument & ex) {
-        cout << ex.what() << endl;
+        cout << "Chyba v prevodu: " << ex.what() << "Zkontrolujte oddelovac, a vstupni soubor" << endl;
+        return EXIT_FAILURE;
     }
-
+    cout << "Uspech" << endl;
 
     return 0;
 
