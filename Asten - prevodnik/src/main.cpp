@@ -7,8 +7,6 @@
 
 using namespace std;
 
-const char numbers[10] = {'1','2','3','4','5','6','7','8','9'};
-
 class CFormatter {
 public:
     CFormatter() = default;
@@ -56,12 +54,11 @@ private:
     vector<int> ProcessLine(const string & line) {
         size_t multiplier = 0;
         vector<int> res;
-        vector<int> matrixLine; // vektor, ktery obsahuje indexy 1 v radku matice
+        vector<int> matrixLine; // vektor, ktery obsahuje indexy '1' v radku matice
         stringstream stream(line);
         string buffer;
         getline(stream, buffer, m_Delimiter); // odstraneni cisla radku
         getline(stream, buffer, m_Delimiter); // nacteni prvniho cisla
-
 
         while (true)
         {
@@ -74,9 +71,7 @@ private:
                     continue;
                 }
                 matrixLine.push_back(readInt - 16 * multiplier);
-            }
-            else
-                break;
+            }  
             if ( ! getline(stream, buffer, m_Delimiter) )
                 break;
         }
@@ -85,13 +80,17 @@ private:
         return res;
     }
 
-    int pow(int base, int exponent) {
+    int Pow(int base, int exponent) {
         int res = 1;
         for (size_t i = 0; i < exponent; i++)
             res = res * base;
         return res;
     }
 
+    /**
+     * Prida 0, aby dolpnil radek na 16 prvku
+     * @param source
+     */
     void FillVector(vector<int> & source) {
         while (source.size() != 16)
             source.push_back(0);
@@ -105,7 +104,7 @@ private:
     int ConvertNumber(const vector<int> & source) {
         int res = 0;
         for (size_t i = 0; i < source.size(); i++) {
-            res += pow(2, 16 - source[i]);
+            res += Pow(2, 16 - source[i]);
         }
         return res;
     }
@@ -172,8 +171,6 @@ int main(int argc, char *argv[]) {
         cout << "Chybí parametr, formát[vstupní soubor, výtupní soubor, oddělovač]" << endl;
     CApplication app(argv[1], argv[2], *argv[3]);
 
-    CTester tester;
-    tester.Run();
     try {
         app.Run();
     }
