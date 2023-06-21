@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <cassert>
+#include <algorithm>
 
 using namespace std;
 
@@ -27,12 +28,10 @@ public:
     void OutputFile(const string & filename) {
         ofstream stream;
         stream.open(filename);
-        for(size_t i = 0 ; i < m_Output.size() ; i++)
-        {
+        for (size_t i = 0; i < m_Output.size(); i++) {
             bool first = true;
-            for ( size_t j = 0 ; j < m_Output[i].size() ; j++ ){
-                if (!first)
-                {
+            for (size_t j = 0; j < m_Output[i].size(); j++) {
+                if (!first) {
                     stream << ", ";
                 }
                 first = false;
@@ -60,9 +59,8 @@ private:
         getline(stream, buffer, m_Delimiter); // odstraneni cisla radku
         getline(stream, buffer, m_Delimiter); // nacteni prvniho cisla
 
-        while (true)
-        {
-            if (find_if(buffer.begin(),buffer.end(),::isdigit )!= buffer.end()) {
+        while (true) {
+            if (find_if(buffer.begin(), buffer.end(), ::isdigit) != buffer.end()) {
                 int readInt = stoi(buffer);
                 if (readInt > (16 * (multiplier + 1))) {
                     multiplier++;
@@ -71,8 +69,8 @@ private:
                     continue;
                 }
                 matrixLine.push_back(readInt - 16 * multiplier);
-            }  
-            if ( ! getline(stream, buffer, m_Delimiter) )
+            }
+            if (!getline(stream, buffer, m_Delimiter))
                 break;
         }
         res.push_back(ConvertNumber(matrixLine));
@@ -160,16 +158,23 @@ public:
         assert (formatter.ConvertNumber({16}) == 1);
         assert (formatter.ConvertNumber({10}) == 64);
         vector<int> a = {21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 1, 2, 0};
-        assert (formatter.ProcessLine("4,12,14,16,28,30,32,44,46,48,60,62,64,76,78,80,92,94,96,108,110,112,124,126,128,140,142,144,156,158,160,172,174,176,188,190,192,204,206,208,224,239") == a);
+        assert (formatter.ProcessLine(
+                "4,12,14,16,28,30,32,44,46,48,60,62,64,76,78,80,92,94,96,108,110,112,124,126,128,140,142,144,156,158,160,172,174,176,188,190,192,204,206,208,224,239") ==
+                a);
     }
 };
 
 
 int main(int argc, char *argv[]) {
     //vstupni parametry mohou byt 2 nebo 3 ( oddelovac je implicitne ','
-    if (argc != 3 && argc != 4)
+    if (argc != 3 && argc != 4) {
         cout << "Chybí parametr, formát[vstupní soubor, výtupní soubor, oddělovač]" << endl;
-    CApplication app(argv[1], argv[2], *argv[3]);
+        return EXIT_FAILURE;
+    }
+    char delimiter = ',';
+    if (argc == 4)
+        delimiter = *argv[3];
+    CApplication app(argv[1], argv[2], delimiter);
 
     try {
         app.Run();
