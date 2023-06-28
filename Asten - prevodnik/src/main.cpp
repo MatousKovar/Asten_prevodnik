@@ -125,7 +125,7 @@ public:
 
     void Run() {
         if (!ValidateFile()) {
-            throw invalid_argument("Soubor \"" + m_InFile + "\" nelze otevřít.");
+            throw invalid_argument("Soubor \"" + m_InFile + "\" nelze otevrit. ");
         }
         CFormatter formatter(m_Delimiter);
         formatter.ProcessFile(m_InFile);
@@ -174,14 +174,13 @@ int main(int argc, char *argv[]) {
     char delimiter = ',';
     if (argc == 4)
         delimiter = *argv[3];
-    cout << delimiter << endl;
     CApplication app(argv[1], argv[2], delimiter);
 
     try {
         app.Run();
     }
     catch (const invalid_argument & ex) {
-        cout << "Chyba v prevodu: " << ex.what() << "Zkontrolujte oddelovac, a vstupni soubor" << endl;
+        cout << "Chyba v prevodu: " << ex.what() << "Zkontrolujte oddelovac, a vstupni soubor." << endl;
         return EXIT_FAILURE;
     }
     cout << "Uspech" << endl;
