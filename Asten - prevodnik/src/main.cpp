@@ -20,6 +20,7 @@ public:
         stream.open(filename);
         string line;
         while (getline(stream, line, '\n')) {
+            cout << line << endl;
             m_Output.push_back(ProcessLine(line));
         }
         stream.close();
