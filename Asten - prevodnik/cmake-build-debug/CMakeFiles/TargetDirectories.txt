@@ -1,3 +1,3 @@
-/Users/matouskovar/Development/Asten - prevodnik/cmake-build-debug/CMakeFiles/Asten___prevodnik.dir
-/Users/matouskovar/Development/Asten - prevodnik/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/matouskovar/Development/Asten - prevodnik/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/dell/CLionProjects/Asten_prevodnik/Asten - prevodnik/cmake-build-debug/CMakeFiles/Asten___prevodnik.dir
+C:/Users/dell/CLionProjects/Asten_prevodnik/Asten - prevodnik/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/dell/CLionProjects/Asten_prevodnik/Asten - prevodnik/cmake-build-debug/CMakeFiles/rebuild_cache.dir

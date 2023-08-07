@@ -28,27 +28,27 @@ public:
     void OutputFile(const string & filename) {
         ofstream stream;
         stream.open(filename);
+        bool first = true;
         for (size_t i = 0; i < m_Output.size(); i++) {
-            bool first = true;
             for (size_t j = 0; j < m_Output[i].size(); j++) {
                 if (!first) {
-                    stream << ", ";
+                    stream << ",";
                 }
                 first = false;
                 stream << m_Output[i][j];
             }
-            if (i != (m_Output.size() - 1))
-                stream << "\n";
+//            if (i != (m_Output.size() - 1))
+//                stream << ",";
         }
         stream.close();
     }
 
 private:
     /**
-     * Vzdy se nacitaji cisla, dokud jsou menci nez dany nasobek 16 (radek), potom se cisla prevedou na decimalni cislo
+     * Vzdy se nacitaji cisla, dokud jsou mensi nez dany nasobek 16 (radek), potom se cisla prevedou na decimalni cislo
      * Nacitani probiha odkud se nenarazi na eof, nebo prazdny buffer (do konce uz budou jen nuly)
      * @param line
-     * @return vektor onsahujici prevedene decimalni cislo pro kazdy radek matice
+     * @return vektor obsahujici prevedene decimalni cislo pro kazdy radek matice
      */
     vector<int> ProcessLine(const string & line) {
         size_t multiplier = 0;
